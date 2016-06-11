@@ -93,7 +93,7 @@ void runClient(string ip, int times) {
     double time_seconds = (double)(time_difference) / 1000.0;
     double bits = (double)(inBytes) * 8;
     
-    cout << "Speed: " << bits / time_seconds << "b/s" << endl;
+    cout << "Speed: " << bits / time_seconds << " b/s" << endl;
     readable_size((double)(inBytes) / time_seconds, (char *)&sizeNotation);
     cout << "Speed: " << sizeNotation << "/s" << endl;
 }
