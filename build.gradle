@@ -45,6 +45,9 @@ model {
                 if (flavor == flavors.debug) {
                     cppCompiler.define "VERBOSE"
                 }
+                if (!(toolChain in VisualCpp)) {
+                    cppCompiler.args "--std=c++11"
+                }
             }
         }
     }
