@@ -85,7 +85,7 @@ void runClient(string ip, int times) {
     }
     long end_time = current_time_millis();
     long inBytes = (long)(times) * (long)(BUFFER_SIZE);
-    char sizeNotation[2];
+    char sizeNotation[12];
     readable_size((double)inBytes, (char *)&sizeNotation);
     cout << "Total Sent: " << sizeNotation << endl;
     long time_difference = end_time - start_time;
