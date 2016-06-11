@@ -1,0 +1,51 @@
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.12'
+}
+
+apply plugin: 'cpp'
+
+model {
+    flavors {
+        release {}
+        debug {}
+    }
+    
+    platforms {
+        x86 {
+            architecture 'x86'
+        }
+        x64 {
+            architecture 'x86_64'
+        }
+    }
+    components {
+        speedtest(NativeExecutableSpec) {
+            targetPlatform 'x86'
+            targetPlatform 'x64'
+            
+            sources {
+                cpp {
+                    source {
+                        srcDirs = ['src']
+                        includes = ['**/*.cpp']
+                    }
+                    exportedHeaders {
+                        srcDirs = ['include']
+                    }
+                }
+            }
+            
+            binaries.all {
+                if (flavor == flavors.debug) {
+                    cppCompiler.define "VERBOSE"
+                }
+            }
+        }
+    }
+}
